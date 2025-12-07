@@ -1,0 +1,416 @@
+/* Reset básico */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tokens visuais – estilo editorial, mais sóbrio e diferente do resto */
+:root {
+    --bg-page: #e7ecef;
+    --bg-shell: #f5f5f4;
+
+    --bg-header: #111827;
+    --bg-main-sheet: #ffffff;
+    --bg-info-strip: #f9fafb;
+
+    --accent-main: #0f766e;         /* verde petróleo */
+    --accent-main-soft: #ccfbf1;
+    --accent-secondary: #f97316;    /* detalhe quente */
+    --accent-secondary-soft: #ffedd5;
+
+    --text-main: #111827;
+    --text-muted: #6b7280;
+    --text-soft: #9ca3af;
+    --text-on-dark: #e5e7eb;
+
+    --border-soft: #e5e7eb;
+    --border-strong: #0f766e;
+
+    --radius-sheet: 18px;
+    --radius-chip: 999px;
+
+    --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+/* Base da página */
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        linear-gradient(135deg, #e5e7eb 0, #e7ecef 40%, #d1d5db 100%);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    padding: 2.5rem 1.5rem;
+}
+
+/* “Caderno” principal */
+.app-shell {
+    width: 100%;
+    max-width: 960px;
+    background: var(--bg-shell);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho – faixa escura horizontal */
+.app-header {
+    background: var(--bg-header);
+    color: var(--text-on-dark);
+    padding: 1.6rem 2rem 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* Marca */
+.app-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Marca geométrica – sem cara de “cartão” */
+.brand-mark {
+    width: 46px;
+    height: 46px;
+    border-radius: 6px;
+    position: relative;
+    background:
+        linear-gradient(135deg, #0f766e 0, #22c55e 50%, #f97316 100%);
+    overflow: hidden;
+}
+
+.brand-mark::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(15, 23, 42, 0.6);
+    background:
+        linear-gradient(135deg, #0f172a 0, #020617 100%);
+}
+
+.brand-text h1 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.brand-text p {
+    font-size: 0.92rem;
+    color: rgba(209, 213, 219, 0.9);
+}
+
+/* Status do storage – vira um chip discreto */
+.app-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--radius-chip);
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    background: rgba(15, 23, 42, 0.75);
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #22c55e;
+}
+
+.status-label {
+    color: rgba(229, 231, 235, 0.92);
+}
+
+/* Conteúdo principal – layout em coluna */
+.app-layout {
+    padding: 1.8rem 2rem 1.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+/* “Folha” do formulário – grande, ocupando o centro visual */
+.card-main {
+    background: var(--bg-main-sheet);
+    border-radius: var(--radius-sheet);
+    border: 1px solid var(--border-soft);
+    padding: 1.7rem 1.6rem 1.5rem;
+}
+
+.card-main h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.1rem;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1.3rem;
+}
+
+/* “Faixa” de explicação – abaixo, como rodapé informativo */
+.card-side {
+    background: var(--bg-info-strip);
+    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.5);
+    padding: 1.2rem 1.4rem;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.card-side h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--text-soft);
+}
+
+/* Lista de explicação em formato de “notas” */
+.explanation-list {
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.explanation-list li {
+    position: relative;
+    padding-left: 1.1rem;
+}
+
+.explanation-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent-main);
+}
+
+.explanation-list strong {
+    color: var(--text-main);
+}
+
+/* Bloco de status dentro da faixa */
+.summary-block {
+    margin-top: 0.6rem;
+    padding: 0.9rem 0.9rem;
+    border-radius: 10px;
+    border: 1px dashed rgba(148, 163, 184, 0.9);
+    background: #fefce8;
+}
+
+.summary-block h3 {
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+}
+
+.storage-status {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+}
+
+/* Formulário – grid clean, sem cara de “dois cartões” */
+.form-grid {
+    display: grid;
+    gap: 0.9rem;
+}
+
+/* Em telas médias/maiores, duas colunas suaves */
+@media (min-width: 720px) {
+    .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 1rem;
+    }
+
+    /* Alguns campos ocupam a linha toda */
+    #nome,
+    #email,
+    #logradouro,
+    #complemento {
+        grid-column: 1 / 3;
+    }
+
+    .form-actions,
+    .form-message {
+        grid-column: 1 / 3;
+    }
+}
+
+/* Campo genérico */
+.field {
+    display: grid;
+    gap: 0.35rem;
+}
+
+label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--text-soft);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"] {
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    color: var(--text-main);
+    outline: none;
+    transition:
+        border-color 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        background-color 0.18s ease-out,
+        transform 0.08s ease-out;
+}
+
+input::placeholder {
+    color: var(--text-soft);
+}
+
+input:focus {
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 1px rgba(15, 118, 110, 0.2);
+    background-color: #f9fafb;
+    transform: translateY(-1px);
+}
+
+/* Input CEP com botão na mesma linha */
+.input-with-action {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) auto;
+    gap: 0.5rem;
+}
+
+.field-message {
+    font-size: 0.78rem;
+    color: var(--accent-secondary);
+    min-height: 1.05rem;
+}
+
+/* Botões */
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+    border-radius: var(--radius-chip);
+    border: 1px solid transparent;
+    padding: 0.8rem 1.3rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.18s ease-out,
+        box-shadow 0.18s ease-out,
+        border-color 0.18s ease-out,
+        transform 0.08s ease-out;
+}
+
+/* Principal: envio */
+.btn-primary {
+    background: var(--accent-main);
+    color: #ecfeff;
+    box-shadow: 0 12px 26px rgba(15, 118, 110, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 32px rgba(15, 118, 110, 0.35);
+    background: #115e59;
+}
+
+/* Secundário: buscar CEP */
+.btn-secondary {
+    background: #111827;
+    color: var(--text-on-dark);
+    padding-inline: 1.1rem;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-1px);
+    background: #020617;
+}
+
+/* Terciário: limpar */
+.btn-tertiary {
+    background: transparent;
+    border-color: var(--border-soft);
+    color: var(--text-muted);
+}
+
+.btn-tertiary:hover {
+    background: #f3f4f6;
+    border-color: var(--text-soft);
+}
+
+/* Ações do formulário */
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: flex-end;
+    margin-top: 0.3rem;
+}
+
+.form-message {
+    margin-top: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--accent-secondary);
+}
+
+/* Destaques/erros via classes do JS */
+.highlight {
+    animation: highlight-pulse 0.5s ease-out;
+}
+
+.shake {
+    animation: shake-x 0.18s ease-out;
+}
+
+/* Animações */
+@keyframes highlight-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+    50%  { box-shadow: 0 0 0 8px rgba(249, 115, 22, 0.18); }
+    100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+
+@keyframes shake-x {
+    0%   { transform: translateX(0); }
+    25%  { transform: translateX(-3px); }
+    50%  { transform: translateX(3px); }
+    75%  { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+/* Acessibilidade – reduzir movimento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

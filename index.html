@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuários · Auto-endereço por CEP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+    <main class="app-shell">
+
+        <header class="app-header">
+            <div class="app-brand">
+                <div class="brand-mark"></div>
+                <div class="brand-text">
+                    <h1>Cadastro de Usuários</h1>
+                    <p>Preencha seus dados e deixe que o CEP cuide do endereço.</p>
+                </div>
+            </div>
+
+            <div class="app-status">
+                <span class="status-dot"></span>
+                <span class="status-label">Dados são salvos automaticamente nesta máquina</span>
+            </div>
+        </header>
+
+        <section class="app-layout">
+
+            <section class="card card-main">
+                <h2>Dados pessoais</h2>
+                <p class="card-subtitle">
+                    As informações são mantidas apenas no seu navegador usando Web Storage.
+                </p>
+
+                <form id="form-cadastro" class="form-grid" autocomplete="off">
+                    <div class="field">
+                        <label for="nome">Nome completo</label>
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            placeholder="Ex.: Ana Souza"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="email">E-mail</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="voce@exemplo.com"
+                        >
+                    </div>
+
+                    <div class="field field-inline">
+                        <div class="field">
+                            <label for="cep">CEP</label>
+                            <div class="input-with-action">
+                                <input
+                                    type="text"
+                                    id="cep"
+                                    name="cep"
+                                    inputmode="numeric"
+                                    maxlength="9"
+                                    placeholder="Ex.: 01001-000"
+                                >
+                                <button type="button" id="btn-buscar-cep" class="btn-secondary">
+                                    Buscar
+                                </button>
+                            </div>
+                            <small id="mensagem-cep" class="field-message"></small>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="logradouro">Rua / Logradouro</label>
+                        <input
+                            type="text"
+                            id="logradouro"
+                            name="logradouro"
+                            placeholder="Preenchido automaticamente pelo CEP"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="numero">Número</label>
+                        <input
+                            type="text"
+                            id="numero"
+                            name="numero"
+                            placeholder="Ex.: 120"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="complemento">Complemento</label>
+                        <input
+                            type="text"
+                            id="complemento"
+                            name="complemento"
+                            placeholder="Apartamento, bloco, sala..."
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="bairro">Bairro</label>
+                        <input
+                            type="text"
+                            id="bairro"
+                            name="bairro"
+                            placeholder="Preenchido automaticamente pelo CEP"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="cidade">Cidade</label>
+                        <input
+                            type="text"
+                            id="cidade"
+                            name="cidade"
+                            placeholder="Preenchido automaticamente pelo CEP"
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="estado">Estado</label>
+                        <input
+                            type="text"
+                            id="estado"
+                            name="estado"
+                            placeholder="UF"
+                            maxlength="2"
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="btn-limpar" class="btn-tertiary">
+                            Limpar formulário
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Simular envio
+                        </button>
+                    </div>
+
+                    <p id="mensagem-form" class="form-message"></p>
+                </form>
+            </section>
+
+            <aside class="card card-side">
+                <h2>Como funciona</h2>
+
+                <ul class="explanation-list">
+                    <li>
+                        <strong>ViaCEP + Fetch API</strong><br>
+                        Ao digitar o CEP, a aplicação consulta a API pública ViaCEP e preenche
+                        automaticamente o endereço.
+                    </li>
+                    <li>
+                        <strong>Web Storage API</strong><br>
+                        Cada campo digitado é salvo no navegador usando localStorage. Se você recarregar
+                        a página, os dados continuam lá.
+                    </li>
+                    <li>
+                        <strong>Experiência contínua</strong><br>
+                        Útil para formulários longos, onde o usuário não pode correr o risco de perder as
+                        informações se a página for fechada por engano.
+                    </li>
+                </ul>
+
+                <section class="summary-block">
+                    <h3>Estado do formulário</h3>
+                    <p id="status-storage" class="storage-status">
+                        Formulário ainda não preenchido.
+                    </p>
+                </section>
+            </aside>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="scripts.js"></script>
+</body>
+</html>
